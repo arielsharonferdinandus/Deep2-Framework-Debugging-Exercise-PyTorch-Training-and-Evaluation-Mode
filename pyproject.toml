@@ -8,6 +8,7 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
+    "numpy>=2.5.3",
     "requests>=2.34.2",
     "torch>=2.14.0",
 ]
@@ -18,3 +19,6 @@ dl-sesi4 = "dl_sesi4:main"
 [build-system]
 requires = ["uv_build>=0.12.18,<0.13.0"]
 build-backend = "uv_build"
+
+[tool.uv]
+package = false
