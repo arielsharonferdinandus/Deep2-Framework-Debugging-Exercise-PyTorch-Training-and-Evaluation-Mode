@@ -1,0 +1,20 @@
+[project]
+name = "dl-sesi4"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "arielsharonferdinandus", email = "ariel.ferdinandus@cakrawala.ac.id" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "requests>=2.34.2",
+    "torch>=2.14.0",
+]
+
+[project.scripts]
+dl-sesi4 = "dl_sesi4:main"
+
+[build-system]
+requires = ["uv_build>=0.12.18,<0.13.0"]
+build-backend = "uv_build"
