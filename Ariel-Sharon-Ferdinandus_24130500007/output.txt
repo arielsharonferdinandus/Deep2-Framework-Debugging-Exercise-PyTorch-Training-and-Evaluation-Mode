@@ -1,0 +1,6 @@
+input shape: (16, 2) dtype: torch.float32 device: cpu
+label shape: (16, 1) dtype: torch.float32 device: cpu
+model device: cpu
+prediction shape: (16, 1) dtype: torch.float32
+broken loss: 0.7332853674888611
+corrected loss: 0.731701672077179
