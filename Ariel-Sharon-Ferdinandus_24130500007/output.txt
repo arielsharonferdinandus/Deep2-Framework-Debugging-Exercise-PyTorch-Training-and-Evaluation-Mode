@@ -1,6 +1,60 @@
+=== Running Base Code ===
 input shape: (16, 2) dtype: torch.float32 device: cpu
 label shape: (16, 1) dtype: torch.float32 device: cpu
 model device: cpu
 prediction shape: (16, 1) dtype: torch.float32
 broken loss: 0.7332853674888611
 corrected loss: 0.731701672077179
+
+=== Running dropout-batchnorm-mode-experiment.py ===
+1st train: tensor([[0., 2., 2., 2., 0., 2., 2., 2., 2., 0.]])
+2nd train: tensor([[2., 0., 0., 0., 0., 2., 2., 2., 0., 0.]])
+1st eval: tensor([[1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]])
+2nd eval: tensor([[1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]])
+
+[training dilakukan dalam mode eval]
+running_mean       : tensor([0., 0., 0., 0.])
+running_var        : tensor([1., 1., 1., 1.])
+num_batches_tracked: 0
+output saat eval: mean=10.096, std=3.084
+
+[training dilakukan dalam mode train]
+running_mean       : tensor([8.6073, 9.2142, 9.0080, 8.6465])
+running_var        : tensor([6.7375, 9.4423, 9.2355, 8.2920])
+num_batches_tracked: 20
+output saat eval: mean=0.425, std=1.058
+
+=== Running label-shape-experiment.py ===
+shape X : (16, 2)
+shape y : (16, 1)
+shape output model : (16, 1)
+jumlah fitur input : 2
+jumlah output model: 1
+
+-- Mismatch  Shape (16,) --
+shape y          : (16,)
+shape prediction : (16, 1)
+hasil broadcasting shape: (16, 16)
+ValueError raised, as expected:
+  Target size (torch.Size([16])) must be the same as input size (torch.Size([16, 1]))
+
+=== Running no-grad-experiment.py ===
+requires_grad: True | grad_fn: True
+requires_grad: False | grad_fn: None
+peak memory          : 1.0 KB
+peak memory no_grad(): 1.1 KB
+waktu          : 65.64 ms total
+waktu no_grad(): 67.69 ms total
+RuntimeError expected:
+  element 0 of tensors does not require grad and does not have a grad_fn
+
+=== Running standart-train-eval-experiment.py ===
+flag .training sebelum eval => True [True, True, True, True]
+flag .training setelah eval => False [False, False, False, False]
+requires_grad semua parameter: True
+gradient tetap terhitung     : True
+nilai grad layer akhir : tensor([0.2347, 1.3023, 0.2837])
+requires_grad output          : False
+grad_fn output                : None
+backward() gagal, error       : element 0 of tensors does not require grad and does not have a grad_fn
+gradient tercatat?             : False
